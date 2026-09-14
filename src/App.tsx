@@ -7,6 +7,7 @@ import {
   AuthLayout,
   AuthScreen,
 } from "./components/index";
+import { SiteLayout as ProtectedLayout, Home } from "./components/Site/index";
 
 export default function App() {
   return (
@@ -17,10 +18,9 @@ export default function App() {
       <Route element={<AuthLayout />}>
         <Route path="auth/:mode" element={<AuthScreen />} />
       </Route>
-      //TODO create site routes
-      {/* <Route element={<ProtectedLayout />}>
-
-      </Route> */}
+      <Route element={<ProtectedLayout />}>
+        <Route path="home" element={<Home />} />
+      </Route>
     </Routes>
   );
 }

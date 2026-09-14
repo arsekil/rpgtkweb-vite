@@ -3,10 +3,11 @@
 import { Link } from "react-router";
 import { Icon } from "@mdi/react";
 import { mdiLogin, mdiAccountPlus, mdiSword, mdiLogout } from "@mdi/js";
-import { useAuth } from "@appwrite.io/react";
+import { useAuth, useUser } from "@appwrite.io/react";
 
 export default function Landing() {
-  const { user, isLoading, signOut } = useAuth();
+  const { isLoading, signOut } = useAuth();
+  const { user } = useUser();
   return (
     <section className="w-full box-border flex flex-col items-center justify-center p-4">
       <video
