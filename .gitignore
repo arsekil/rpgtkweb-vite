@@ -23,3 +23,10 @@ dist-ssr
 *.sln
 *.sw?
 .env*
+application_default_credentials.json
+serviceAccountKey.json
+*-firebase-adminsdk-*.json
+.env
+.env.local
+.firebase/
+functions/node_modules/
