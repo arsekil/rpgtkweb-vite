@@ -2,6 +2,49 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+    function isCurator() {
+      return isSignedIn() &&
+        get(/databases/$(database)/documents/profiles/$(request.auth.uid)).data.isCurator == true;
+    }
+    function isOwner(uid) {
+      return isSignedIn() && request.auth.uid == uid;
+    }
+
+    match /profiles/{uid} {
+      allow read: if true;
+      allow create: if isOwner(uid);
+      allow update: if isCurator() || (
+        isOwner(uid) &&
+        request.resource.data.isCurator == resource.data.isCurator
+      );
+      allow delete: if isOwner(uid) || isCurator();
+    }
+
+    match /extensions/{id} {
+      allow read: if true;
+      allow create: if isSignedIn();
+      allow update, delete: if isCurator() ||
+        (isSignedIn() && request.auth.uid == resource.data.developerId);
+    }
+
+    match /tutorials/{id} {
+      allow read: if true;
+      allow create: if isSignedIn();
+      allow update, delete: if isCurator() ||
+        (isSignedIn() && request.auth.uid == resource.data.authorId);
+    }
+
+    match /games/{id} {
+      allow read: if true;
+      allow create: if isSignedIn();
+      allow update, delete: if isCurator() ||
+        (isSignedIn() && request.auth.uid == resource.data.developerId);
+    }
+
     match /{document=**} {
       allow read, write: if false;
     }

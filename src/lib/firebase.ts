@@ -8,7 +8,7 @@ import {
 } from "firebase/app-check";
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBAE_API_KEY! as string,
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY! as string,
   authDomain: import.meta.env.VITE_FIREBASE_DOMAIN! as string,
   projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID! as string,
   storageBucket: import.meta.env.VITE_FIREBASE_BUCKET! as string,
