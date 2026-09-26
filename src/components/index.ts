@@ -6,6 +6,7 @@ import Menu from "./Menu/Menu";
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
 import Tidbit from "./Tidbit/Tidbit";
+import Powered from "./Powered/Powered";
 
 export {
   Layout as LandingLayout,
@@ -15,5 +16,6 @@ export {
   Menu,
   Header,
   Tidbit,
-  Footer
+  Footer,
+  Powered
 };

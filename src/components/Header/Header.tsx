@@ -1,29 +1,18 @@
-import React from "react";
-import { Link, useNavigate } from "react-router";
-import { useAuth } from "@appwrite.io/react";
+"use client";
+
+import { Link, useNavigate} from "react-router";
 import { Icon } from "@mdi/react";
 import { mdiMagnify, mdiLogout } from "@mdi/js";
+import { auth } from "../../lib/firebase";
 import { Menu } from "../index";
+import useAuthUser from "../../hooks/useAuthUser";
 
 // TODO: add dynamically changing background image into "header" - e.g. bg-[url('/tk/core/2.jpg')] bg-no-repeat bg-center bg-cover
 // TODO: add Search input functionality
 
 export default function Header() {
-  const [authError, setAuthError] = React.useState<string>();
-  const { error, user, signOut } = useAuth();
+  const { user } = useAuthUser();
   const navigate = useNavigate();
-
-  if (error) {
-    setAuthError(error.message);
-  }
-
-  if (authError) {
-    return (
-      <div className="w-2xs h-screen flex justify-center items-center border rounded-lg border-orange-900 bg-zinc-700 text-white">
-        {authError}
-      </div>
-    );
-  }
 
   return (
     <header
@@ -35,7 +24,7 @@ export default function Header() {
         className="absolute w-full position top-0 right-0 left-0 h-16 bg-[url('/tk/core/bar-bkg.png')] flex flex-row justify-between items-center"
       >
         <div id="logo" className="pt-4 pl-4 w-52 h-16">
-          <Link to="/">
+          <Link to="/home">
             <img
               src="/tk/logo.png"
               alt="RPGToolkit Logo"
@@ -51,11 +40,11 @@ export default function Header() {
           className="flex flex-row justify-center items-center gap-6 w-60 h-16"
         >
           <div className="text-white text-sm font-bold">
-            Welcome, {user?.name}!
+            Welcome, {user?.displayName}!
           </div>
           <div
             className="cursor-pointer"
-            onClick={() => signOut.signOut({ onSuccess: () => navigate("/") })}
+            onClick={() => {auth.signOut(), navigate("/")}}
           >
             <Icon path={mdiLogout} size={0.8} color={"white"} />
           </div>

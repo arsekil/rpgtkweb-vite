@@ -1,33 +1,9 @@
-import React from "react";
-import { Outlet, useNavigate } from "react-router";
-import { useAuth } from "@appwrite.io/react";
-import { Header, Footer, Tidbit } from "../index";
+"use client";
+
+import { Outlet } from "react-router";
+import { Header, Footer, Tidbit, Powered } from "../index";
 
 export default function Layout() {
-  // const [authError, setAuthError] = React.useState<Error>();
-  // const navigate = useNavigate();
-  // const { user, error } = useAuth();
-
-  // React.useEffect(() => {
-  //   if (!user) {
-  //     navigate("/");
-  //   }
-  // }, [navigate, user]);
-
-  // React.useEffect(() => {
-  //   if (!user) {
-  //     setAuthError(error as Error);
-  //   }
-  // }, [user]);
-
-  // if (authError) {
-  //   return (
-  //     <div className="w-2xs h-screen flex justify-center items-center border rounded-lg border-orange-900 bg-zinc-700 text-white">
-  //       {authError as unknown as string}
-  //     </div>
-  //   );
-  // }
-
   return (
     <div
       id="home"
@@ -42,6 +18,7 @@ export default function Layout() {
         <Footer />
       </div>
       <Tidbit />
+      <Powered route="home"/>
     </div>
   );
 }

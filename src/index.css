@@ -1,7 +1,26 @@
 @import "tailwindcss";
+@import "@firebase-oss/ui-styles/tailwind";
 
 @theme {
   --color-menu-selected-bg: #324d63;
   --color-blurb-selected-bg: #273948;
   --color-blurb-selected-arrow: #48667f;
+}
+
+:root {
+  --fui-primary: #1e293b; /* your brand accent — button/link color */
+  --fui-primary-hover: #334155;
+  --fui-primary-surface: #ffffff; /* text color drawn ON TOP of --fui-primary */
+
+  --fui-text: #18181b; /* body text — was rendering white before this */
+  --fui-text-muted: #71717a; /* subtitles, helper text */
+
+  --fui-background: #ffffff;
+  --fui-border: #e4e4e7; /* borders on cards, dividers, non-input elements */
+  --fui-input: #a1a1aa; /* input field background */
+
+  --fui-error: #dc2626;
+
+  --fui-radius: 0.5rem; /* input corner radius */
+  --fui-radius-card: 0.75rem; /* card corner radius */
 }
